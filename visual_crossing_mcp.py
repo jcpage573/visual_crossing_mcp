@@ -1,18 +1,18 @@
 import json
 import requests
 from typing import List
-from mcp.server.fastmcp import FastMCP
+from fastmcp import FastMCP
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
-mcp = FastMCP("historical_weather")
-
 
 API_KEY = os.getenv("API_KEY")
 TRANSPORT_PROTOCOL = os.getenv("VC_MCP_TRANSPORT")
 HOST = os.getenv("HOST")
 base_url = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/history?'
+
+mcp = FastMCP("historical_weather", host=HOST)
 
 def build_url(location, start_date, end_date, unit_of_measure):
 
@@ -76,6 +76,6 @@ def visual_crossing_history(location, start_date, end_date, unit_of_measure) -> 
         return {}    
 
 if __name__ == "__main__":
-    mcp.run(transport=TRANSPORT_PROTOCOL, host=HOST)
+    mcp.run(transport=TRANSPORT_PROTOCOL)
 
     
