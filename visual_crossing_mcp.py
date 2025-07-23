@@ -10,6 +10,7 @@ mcp = FastMCP("historical_weather")
 
 
 API_KEY = os.getenv("API_KEY")
+TRANSPORT_PROTOCOL = os.getenv("VC_MCP_TRANSPORT")
 base_url = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/history?'
 
 def build_url(location, start_date, end_date, unit_of_measure):
@@ -74,6 +75,6 @@ def visual_crossing_history(location, start_date, end_date, unit_of_measure) -> 
         return {}    
 
 if __name__ == "__main__":
-    mcp.run(transport='stdio')
+    mcp.run(transport=TRANSPORT_PROTOCOL)
 
     
